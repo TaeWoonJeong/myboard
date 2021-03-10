@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header th:insert="common/header.html"></header>
+<br/>
+<div class="container">
+    <div>
+        글번호 : <span id="id" th:text="${board.id}"></span>
+        <br/>
+        조회수 : <span id="comment" th:text="${board.count}"></span>
+    </div>
+    <hr/>
+    <div class="form-group">
+        <h3 th:text="${board.title}"></h3>
+    </div>
+    <hr/>
+    <div class="form-group">
+        <p th:text="${board.content}"></p>
+    </div>
+    <hr/>
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary m-1" onclick="history.back()">돌아가기</button>
+        <a th:href="@{/board/update/{id} (id=${board.id})}" type="button" class="btn btn-primary m-1">수정</a>
+        <button id="btn-delete" type="button" class="btn btn-danger m-1">삭제</button>
+    </div>
+
+</div>
+<br/>
+<footer th:insert="common/footer.html"></footer>
+<script src="/js/board.js"></script>
+</body>
+</html>
