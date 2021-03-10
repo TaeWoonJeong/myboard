@@ -34,12 +34,14 @@ public class BoardService {
         return boardRepository.findAll(pageable);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional //(readOnly=true) 없애주면 더티체킹되서 바뀜
     public Board detailBoard(int id) {
-        return boardRepository.findById(id)
+        Board board= boardRepository.findById(id)
                 .orElseThrow(()->{
                     return new IllegalArgumentException("글 상세보기 실패 아이디 못찾음");
                 });
+        board.setCount(board.getCount()+1);
+        return board;
     }
 
     @Transactional
